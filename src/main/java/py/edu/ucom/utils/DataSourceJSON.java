@@ -9,10 +9,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import py.edu.ucom.entities.Libros;
+import py.edu.ucom.entities.Monedas;
 import py.edu.ucom.entities.Usuarios;
 
 @ApplicationScoped
 public class DataSourceJSON {
+    public String SRC_MONEDAS = "C:\\Users\\Jhony\\Desktop\\taller-1\\src\\main\\java\\py\\edu\\ucom\\utils\\monedas.json";
     public String SRC_USUARIOS = "C:\\Users\\Jhony\\Desktop\\taller-1\\src\\main\\java\\py\\edu\\ucom\\utils\\usuarios.json";
     public String SRC = "C:\\Users\\Jhony\\Desktop\\taller-1\\src\\main\\java\\py\\edu\\ucom\\utils\\libros.json";
 
@@ -149,4 +151,36 @@ public class DataSourceJSON {
         }
         
     }
+
+    public List<Monedas> obtenerMonedas(){
+        ObjectMapper mapper = new ObjectMapper();
+        List<Monedas> lista = new ArrayList();
+
+        try {
+            lista = mapper.readValue(
+                    new File(this.SRC_MONEDAS),
+                    new TypeReference<List<Monedas>>() {
+                    });
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
+
+    public Monedas buscarMonedas(String codigo) {
+        Monedas data = null;
+        List<Monedas> lista = obtenerMonedas();
+
+        for (Monedas item : lista) {
+            if (item.getCodigo().equals(codigo)) {
+                data = item;
+                break;
+            }
+        }
+        return data;
+    }
+
 }
