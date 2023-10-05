@@ -1,4 +1,4 @@
-package oy.edu.com.sebdev.entities;
+package py.edu.com.sebdev.entities;
 import java.util.List;
 
 public class Usuarios {

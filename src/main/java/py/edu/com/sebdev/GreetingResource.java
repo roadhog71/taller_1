@@ -1,4 +1,4 @@
-package oy.edu.com.sebdev;
+package py.edu.com.sebdev;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

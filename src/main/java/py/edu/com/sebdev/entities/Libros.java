@@ -1,4 +1,4 @@
-package oy.edu.com.sebdev.entities;
+package py.edu.com.sebdev.entities;
 
 public class Libros {
     public String titulo;
