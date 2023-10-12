@@ -1,4 +1,4 @@
-package py.edu.ucom.servicios;
+package py.edu.ucom.services;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,12 +17,12 @@ public class PagoService {
     @Inject
     private DataSourceJSON ds;
 
-    public Map<String,String> prestar(String documentoCliente, String documentoUsuario, List<DetallePago> productos ){
+    public Map<String,String> registrarPago(String documentoCliente, String documentoUsuario, List<DetallePago> productos ){
         Map<String,String> respuesta = new HashMap<>();
         Clientes cliente = this.ds.buscarCliente(documentoCliente);
         Usuarios usuario = this.ds.buscarUsuario(documentoUsuario);
         
-        public Pagos pago = new Pagos(cliente, usuario, productos);
+        Pagos pago = new Pagos(cliente, usuario, productos);
 
         this.ds.guardarPago(pago);
 
