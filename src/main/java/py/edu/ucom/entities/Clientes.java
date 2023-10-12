@@ -1,6 +1,7 @@
 package py.edu.ucom.entities;
 
-public class Usuarios {
+
+public class Clientes {
     public String nombre;
     public String documento;
     

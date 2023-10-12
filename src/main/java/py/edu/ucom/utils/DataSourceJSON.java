@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import py.edu.ucom.entities.Libros;
+import py.edu.ucom.entities.Productos;
 import py.edu.ucom.entities.Monedas;
 import py.edu.ucom.entities.Usuarios;
 
@@ -18,11 +18,11 @@ public class DataSourceJSON {
     public String SRC_USUARIOS = "C:\\Users\\Jhony\\Desktop\\taller-1\\src\\main\\java\\py\\edu\\ucom\\utils\\usuarios.json";
     public String SRC = "C:\\Users\\Jhony\\Desktop\\taller-1\\src\\main\\java\\py\\edu\\ucom\\utils\\libros.json";
 
-    public void guardarLibro(Libros libro) {
+    public void guardarLibro(Productos libro) {
         try {
             ObjectMapper mapper = new ObjectMapper();
 
-            List<Libros> lista = obtenerLibros();
+            List<Productos> lista = obtenerLibros();
             lista.add(libro);
             mapper.writeValue(new File(this.SRC), lista);
         } catch (Exception e) {
@@ -30,13 +30,13 @@ public class DataSourceJSON {
         }
     }
 
-    public List<Libros> obtenerLibros() {
+    public List<Productos> obtenerLibros() {
         ObjectMapper mapper = new ObjectMapper();
-        List<Libros> libros = new ArrayList<>();
+        List<Productos> libros = new ArrayList<>();
         try {
             libros = mapper.readValue(
                     new File(this.SRC),
-                    new TypeReference<List<Libros>>() {
+                    new TypeReference<List<Productos>>() {
                     });
 
         } catch (Exception e) {
@@ -77,12 +77,12 @@ public class DataSourceJSON {
         return data;
     }
 
-    public Libros buscarLibro(String isbn) {
-        Libros libro = null;
-        List<Libros> data = obtenerLibros();
+    public Productos buscarLibro(String isbn) {
+        Productos libro = null;
+        List<Productos> data = obtenerLibros();
 
-        for (Libros item : data) {
-            if (item.getISBN().equals(isbn)) {
+        for (Productos item : data) {
+            if (item.getPrecio().equals(isbn)) {
                 libro = item;
             }
         }
@@ -102,20 +102,20 @@ public class DataSourceJSON {
     }
 
     /// actualizar libro y actualizar usuario
-    public void actualizarLibro(Libros param) {
-        List<Libros> data = obtenerLibros();
+    public void actualizarLibro(Productos param) {
+        List<Productos> data = obtenerLibros();
 
-        for (Libros item : data) {
-            if (item.getISBN().equals(param.getISBN())) {
+        for (Productos item : data) {
+            if (item.getPrecio().equals(param.getPrecio())) {
 
                 if(param.getPrestado()!=null){
                    item.setPrestado(param.getPrestado()); 
                 }
-                if(param.getTitulo()!=null && !param.getTitulo().isEmpty()){
-                    item.setTitulo(param.getTitulo());
+                if(param.getCodigo()!=null && !param.getCodigo().isEmpty()){
+                    item.setCodigo(param.getCodigo());
                 }
-                if(param.getAutor() != null && !param.getAutor().isEmpty()){
-                 item.setAutor(param.getAutor());
+                if(param.getNombre() != null && !param.getNombre().isEmpty()){
+                 item.setNombre(param.getNombre());
                 }
             }
         }
