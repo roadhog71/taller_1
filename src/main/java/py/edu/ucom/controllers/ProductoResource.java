@@ -32,6 +32,7 @@ public class ProductoResource {
         return this.service.agregar(param);
     }
     @PUT
+    @Path("{id}")
     public Producto modificar (Producto param){
         return this.service.modificar(param);
     }

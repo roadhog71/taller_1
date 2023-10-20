@@ -55,7 +55,9 @@ public class Producto implements Serializable {
     @Column(name = "precio_unitario")
     private int precioUnitario;
     
-
+    public Producto() {
+        super();
+    }
     public Producto(Integer productoId) {
         this.productoId = productoId;
     }
