@@ -51,7 +51,7 @@ public class Venta implements Serializable {
     private Date fecha;
     @JoinColumn(name = "cliente_id", referencedColumnName = "cliente_id")
     @ManyToOne(optional = false)
-    private Cliente clienteId;
+    private Cliente cliente;
 
 
     public Venta() {
@@ -92,11 +92,11 @@ public class Venta implements Serializable {
     }
 
     public Cliente getClienteId() {
-        return clienteId;
+        return cliente;
     }
 
     public void setClienteId(Cliente clienteId) {
-        this.clienteId = clienteId;
+        this.cliente = clienteId;
     }
 
 

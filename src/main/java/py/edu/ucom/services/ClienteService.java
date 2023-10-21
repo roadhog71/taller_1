@@ -23,8 +23,7 @@ public class ClienteService implements IDAO<Cliente, Integer> {
     @Override
     @Transactional
     public Cliente agregar(Cliente cliente) {
-        entityManager.persist(cliente);
-        return cliente;
+        return entityManager.merge(cliente);
     }
 
     @Override

@@ -55,8 +55,12 @@ public class Cliente implements Serializable {
     @Column(name = "es_cliente_fiel")
     private Boolean esClienteFiel;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteId", fetch = FetchType.LAZY)
+    @Column(name = "tipo_documento_id")
+    private Integer tipoDocumentoId;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<Venta> ventaList;
+
 
     public Cliente() {
     }
@@ -65,11 +69,12 @@ public class Cliente implements Serializable {
         this.clienteId = clienteId;
     }
 
-    public Cliente(Integer clienteId, String nombres, String apellidos, String documento) {
+    public Cliente(Integer clienteId, String nombres, String apellidos, String documento, Integer tipoDocumentoId) {
         this.clienteId = clienteId;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.documento = documento;
+        this.tipoDocumentoId = tipoDocumentoId;
     }
 
     public Integer getClienteId() {
@@ -97,11 +102,18 @@ public class Cliente implements Serializable {
     }
 
     public String getDocumento() {
-        return documento;
+        return this.documento;
     }
 
     public void setDocumento(String documento) {
         this.documento = documento;
+    }
+    public Integer getTipoDocumentoId() {
+        return this.tipoDocumentoId;
+    }
+
+    public void setTipoDocumentoId(Integer tipoDocumentoId) {
+        this.tipoDocumentoId = tipoDocumentoId;
     }
 
     public Boolean getEsClienteFiel() {
@@ -113,14 +125,14 @@ public class Cliente implements Serializable {
     }
 
 
-    @XmlTransient
-    public List<Venta> getVentaList() {
-        return ventaList;
-    }
+    // @XmlTransient
+    // public List<Venta> getVentaList() {
+    //     return ventaList;
+    // }
 
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
-    }
+    // public void setVentaList(List<Venta> ventaList) {
+    //     this.ventaList = ventaList;
+    // }
 
     @Override
     public int hashCode() {
