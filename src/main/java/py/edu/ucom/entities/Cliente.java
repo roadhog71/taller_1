@@ -30,6 +30,8 @@ import jakarta.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByApellidos", query = "SELECT c FROM Cliente c WHERE c.apellidos = :apellidos"),
     @NamedQuery(name = "Cliente.findByDocumento", query = "SELECT c FROM Cliente c WHERE c.documento = :documento"),
     @NamedQuery(name = "Cliente.findByEsClienteFiel", query = "SELECT c FROM Cliente c WHERE c.esClienteFiel = :esClienteFiel")})
+
+    
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,7 +60,7 @@ public class Cliente implements Serializable {
     @Column(name = "tipo_documento_id")
     private Integer tipoDocumentoId;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Venta> ventaList;
 
 

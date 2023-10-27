@@ -52,6 +52,8 @@ public class Venta implements Serializable {
     @JoinColumn(name = "cliente_id", referencedColumnName = "cliente_id")
     @ManyToOne(optional = false)
     private Cliente cliente;
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VentaDetalle> ventaDetalleList;
 
 
     public Venta() {
@@ -92,13 +94,21 @@ public class Venta implements Serializable {
     }
 
     public Cliente getClienteId() {
-        return cliente;
+        return this.cliente;
+    }
+    
+    public void setClienteId(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
+    @XmlTransient
+    public List<VentaDetalle> getVentaDetalleList() {
+        return ventaDetalleList;
     }
 
-    public void setClienteId(Cliente clienteId) {
-        this.cliente = clienteId;
+    public void setVentaDetalleList(List<VentaDetalle> ventaDetalleList) {
+        this.ventaDetalleList = ventaDetalleList;
     }
-
 
     @Override
     public int hashCode() {
