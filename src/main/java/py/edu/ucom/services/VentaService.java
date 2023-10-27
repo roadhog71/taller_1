@@ -20,7 +20,7 @@ public class VentaService implements IDAO<Venta, Integer> {
     private final VentaRepository ventaRepository;
     private final VentaDetalleRepository ventaDetalleRepository;
 
-    @Inject
+    
     public VentaService(VentaRepository ventaRepository, VentaDetalleRepository ventaDetalleRepository) {
         this.ventaRepository = ventaRepository;
         this.ventaDetalleRepository = ventaDetalleRepository;
@@ -34,14 +34,19 @@ public class VentaService implements IDAO<Venta, Integer> {
     @Override
     public Venta agregar(Venta param) {
         try {
-            Venta savedVenta = this.ventaRepository.save(param);
-
+            Venta test = new Venta();
+            test.setCliente(param.getCliente());
+            test.setFecha(param.getFecha());
+            test.setTotal(param.getTotal());
+            //test.setVentaDetalleList(param.getVentaDetalleList());
+            Venta savedVenta = this.ventaRepository.save(test);
+                System.out.println(savedVenta.toString());
             if (param.getVentaDetalleList() != null) {
                 for (VentaDetalle ventaDetalle : param.getVentaDetalleList()) {
                     ventaDetalle.setVenta(savedVenta);
                     ventaDetalleRepository.save(ventaDetalle);
                 }
-            }
+            } 
 
             return savedVenta;
         } catch (Exception e) {
@@ -74,7 +79,7 @@ public class VentaService implements IDAO<Venta, Integer> {
     public ResumenVentaDTO obtenerResumen(Integer ventaId){
         ResumenVentaDTO data = new ResumenVentaDTO();
         Venta v = this.ventaRepository.findById(ventaId).orElse(null);
-        Cliente clie = v.getClienteId();
+        Cliente clie = v.getCliente();
         data.setRazonSocial(clie.getNombres()+" "+clie.getApellidos() );
         data.setDocumento(clie.getDocumento());
         data.setFecha(v.getFecha());
@@ -83,7 +88,7 @@ public class VentaService implements IDAO<Venta, Integer> {
                 VentaDetalleDTO vdto = new VentaDetalleDTO();
                 vdto.setCantidad(item.getCantidad());
                 vdto.setSubtotal(item.getSubtotal());
-                vdto.setDescripcion( item.getProducto().getDescripcion());
+                vdto.setDescripcion( item.getProductoId().getDescripcion());
                 detalle.add( vdto);
         }
         data.setDetalle( detalle);

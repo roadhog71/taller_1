@@ -47,7 +47,7 @@ public class VentaDetalle implements Serializable {
     private Integer subtotal;
     @JoinColumn(name = "producto_id", referencedColumnName = "producto_id")
     @ManyToOne(optional = false)
-    private Producto producto;
+    private Producto productoId;
     
     @JsonIgnore
     @JoinColumn(name = "venta_id", referencedColumnName = "venta_id")
@@ -57,56 +57,67 @@ public class VentaDetalle implements Serializable {
     public VentaDetalle() {
     }
 
-    public VentaDetalle(Integer ventaDetalleId) {
-        this.ventaDetalleId = ventaDetalleId;
-    }
-
-    public VentaDetalle(Integer ventaDetalleId, Integer cantidad, Integer subtotal, Producto producto) {
-        this.ventaDetalleId = ventaDetalleId;
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
-        this.producto = producto;
-    }
+ 
 
     public Integer getVentaDetalleId() {
-        return this.ventaDetalleId;
+        return ventaDetalleId;
     }
+
+
 
     public void setVentaDetalleId(Integer ventaDetalleId) {
         this.ventaDetalleId = ventaDetalleId;
     }
 
+
+
     public Integer getCantidad() {
-        return this.cantidad;
+        return cantidad;
     }
+
+
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
+
+
     public Integer getSubtotal() {
-        return this.subtotal;
+        return subtotal;
     }
+
+
 
     public void setSubtotal(Integer subtotal) {
         this.subtotal = subtotal;
     }
 
-    public Producto getProducto() {
-        return this.producto;
+
+
+    public Producto getProductoId() {
+        return productoId;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+
+
+    public void setProductoId(Producto productoId) {
+        this.productoId = productoId;
     }
+
+
 
     public Venta getVenta() {
-        return this.venta;
+        return venta;
     }
+
+
 
     public void setVenta(Venta venta) {
         this.venta = venta;
     }
+
+
 
     @Override
     public int hashCode() {

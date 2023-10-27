@@ -59,55 +59,64 @@ public class Venta implements Serializable {
     public Venta() {
     }
 
-    public Venta(Integer ventaId) {
-        this.ventaId = ventaId;
-    }
-
-    public Venta(Integer ventaId, int total, Date fecha) {
-        this.ventaId = ventaId;
-        this.total = total;
-        this.fecha = fecha;
-    }
-
+   
     public Integer getVentaId() {
         return ventaId;
     }
+
+
 
     public void setVentaId(Integer ventaId) {
         this.ventaId = ventaId;
     }
 
+
+
     public int getTotal() {
         return total;
     }
+
+
 
     public void setTotal(int total) {
         this.total = total;
     }
 
+
+
     public Date getFecha() {
         return fecha;
     }
+
+
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public Cliente getClienteId() {
-        return this.cliente;
+
+
+    public Cliente getCliente() {
+        return cliente;
     }
-    
-    public void setClienteId(Cliente cliente) {
+
+
+
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    @XmlTransient
-    public List<VentaDetalle> getVentaDetalleList() {
-        return ventaDetalleList;
-    }
+
+
 
     public void setVentaDetalleList(List<VentaDetalle> ventaDetalleList) {
         this.ventaDetalleList = ventaDetalleList;
+    }
+
+
+
+    @XmlTransient
+    public List<VentaDetalle> getVentaDetalleList() {
+        return ventaDetalleList;
     }
 
     @Override
