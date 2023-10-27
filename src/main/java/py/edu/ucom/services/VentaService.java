@@ -36,7 +36,6 @@ public class VentaService implements IDAO<Venta, Integer> {
         try {
             Venta savedVenta = this.ventaRepository.save(param);
 
-            // If VentaDetalle list is not null, associate each VentaDetalle with the saved Venta
             if (param.getVentaDetalleList() != null) {
                 for (VentaDetalle ventaDetalle : param.getVentaDetalleList()) {
                     ventaDetalle.setVenta(savedVenta);
